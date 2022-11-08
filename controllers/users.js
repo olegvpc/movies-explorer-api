@@ -111,6 +111,10 @@ module.exports.updateUser = (req, res, next) => {
         const error = new ValidationError(`Передан некорректный _id: ${req.user._id} пользователя.${err.name}`);
         return next(error);
       }
+      if (err.code === 11000) {
+        const error = new ConflictError(`Пользователь с таким e-mail уже есть. ${err.message}`);
+        return next(error);
+      }
       return next(err);
     });
 };

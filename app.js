@@ -11,9 +11,10 @@ const { requestLogger, errorLogger } = require('./middlewares/logger');
 const { routes } = require('./routes');
 const { handleError } = require('./middlewares/handleError');
 
-const { NODE_ENV, PORT, BASE_PATH } = process.env;
-const port = NODE_ENV !== 'production' ? 4000 : PORT,
-  basePath = NODE_ENV !== 'production' ? `http://localhost:${port}` : `${BASE_PATH}:${PORT}`;
+const {
+  PORT = 3000,
+  BASE_PATH = `http://localhost:${PORT}`,
+} = process.env;
 
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 минут
@@ -39,7 +40,7 @@ app.use(errors()); // обработчик ошибок celebrate
 //
 app.use(handleError);
 
-app.listen(port, () => {
+app.listen(PORT, () => {
   console.log('Ссылка на сервер');
-  console.log(basePath);
+  console.log(BASE_PATH);
 });

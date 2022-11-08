@@ -47,5 +47,4 @@ router.delete(
   deleteMovie,
 );
 
-
 module.exports = router;
