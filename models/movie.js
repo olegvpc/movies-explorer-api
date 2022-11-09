@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-// const { REGEX_URL } = require('../utils/regex-url');
 const isURL = require('validator/lib/isURL'); // использование стандартной библиотеки валидации
 const { urlValidatorMessage, requiredValidationMessage } = require('../utils/constants');
 

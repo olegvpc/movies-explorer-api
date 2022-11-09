@@ -1,9 +1,11 @@
-const urlRegEx = /https?:\/\/(www)?[0-9a-z\-._~:/?#[\]!$&'()*+,;=]+#?$/i;
 const urlValidatorMessage = 'Строка должна содержать ссылку!';
+const userExistErrorMessage = 'Пользователь с таким email уже существует';
+const BadRequestErrorMessage = 'Переданы некорректные данные';
 const requiredValidationMessage = (name) => `Поле "${name}" обязательно`;
 
 module.exports = {
-  urlRegEx,
   urlValidatorMessage,
+  userExistErrorMessage,
+  BadRequestErrorMessage,
   requiredValidationMessage,
 };

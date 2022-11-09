@@ -6,6 +6,7 @@ const { ValidationError } = require('../errors/validation-error');
 const { ConflictError } = require('../errors/conflict-error');
 const { UnauthorizedError } = require('../errors/unauthorized-error');
 const { NotFoundError } = require('../errors/not-found-error');
+const { userExistErrorMessage, BadRequestErrorMessage } = require('../utils/constants');
 
 module.exports.login = (req, res, next) => {
   const { email, password } = req.body;
@@ -32,7 +33,7 @@ module.exports.login = (req, res, next) => {
     })
     .catch((err) => {
       if (err.name === 'Error') {
-        const error = new UnauthorizedError(`Переданы некорректные данные пользователя.${err.message}- ${err.name} `);
+        const error = new UnauthorizedError(BadRequestErrorMessage);
         return next(error);
       }
       return next(err);
@@ -60,11 +61,11 @@ module.exports.createUser = (req, res, next) => {
     })
     .catch((err) => {
       if (err.name === 'ValidationError') {
-        const error = new ValidationError(`Переданы некорректные данные при создании пользователя.${err.message}- ${err.name} `);
+        const error = new ValidationError(BadRequestErrorMessage);
         return next(error);
       }
       if (err.code === 11000) {
-        const error = new ConflictError(`Пользователь с таким e-mail уже есть. ${err.message}`);
+        const error = new ConflictError(userExistErrorMessage);
         return next(error);
       }
       // return res.send({ message: 'На сервере произошла ошибкаffffff', CODE: err.message });
@@ -108,11 +109,11 @@ module.exports.updateUser = (req, res, next) => {
     })
     .catch((err) => {
       if (err.name === 'CastError') {
-        const error = new ValidationError(`Передан некорректный _id: ${req.user._id} пользователя.${err.name}`);
+        const error = new ValidationError(`Передан некорректный _id: ${req.user._id} пользователя.`);
         return next(error);
       }
       if (err.code === 11000) {
-        const error = new ConflictError(`Пользователь с таким e-mail уже есть. ${err.message}`);
+        const error = new ConflictError(userExistErrorMessage);
         return next(error);
       }
       return next(err);

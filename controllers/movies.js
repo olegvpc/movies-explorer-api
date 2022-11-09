@@ -12,29 +12,14 @@ module.exports.getAllMovies = (req, res, next) => {
 };
 
 module.exports.createMovie = (req, res, next) => {
-  const {
-    country, director, duration, year, description,
-    image, trailerLink, thumbnail, nameRU, nameEN, movieId,
-  } = req.body;
   const ownerId = req.user._id;
   Movie.create({
-    country,
-    director,
-    duration,
-    year,
-    description,
-    image,
-    trailerLink,
-    thumbnail,
-    nameRU,
-    nameEN,
-    movieId,
-    owner: ownerId,
+    ...req.body, owner: ownerId,
   })
     .then((movie) => res.status(201).send(movie))
     .catch((err) => {
       if (err.name === 'ValidationError') {
-        const error = new ValidationError(`Переданы некорректные данные при создании карточки фильма. - ${err.message}`);
+        const error = new ValidationError('Переданы некорректные данные при создании карточки фильма.');
         return next(error);
       }
       return next(err);
@@ -53,12 +38,13 @@ module.exports.deleteMovie = (req, res, next) => {
       Movie.findByIdAndRemove(req.params.movieId)
       // .populate('owner')
         .then(() => {
-          res.send({ message: ` Карточка фильма с _id: ${req.params.movieId} удалена` });
-        });
+          res.send({ message: `Карточка фильма с _id: ${req.params.movieId} удалена` });
+        })
+        .catch(next); //  то же самое что .catch(err => next(err));
     })
     .catch((err) => {
       if (err.name === 'CastError') {
-        const error = new ValidationError(`Передан некорректный _id: ${req.params.movieId} карточки фильма. ${err.name}`);
+        const error = new ValidationError(`Передан некорректный _id: ${req.params.movieId} карточки фильма.`);
         return next(error);
       }
       return next(err);

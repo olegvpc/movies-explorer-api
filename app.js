@@ -14,6 +14,7 @@ const { handleError } = require('./middlewares/handleError');
 const {
   PORT = 3000,
   BASE_PATH = `http://localhost:${PORT}`,
+  URL_DATABASE = 'mongodb://127.0.0.1:27017/bitfilmsdb',
 } = process.env;
 
 const limiter = rateLimit({
@@ -23,10 +24,11 @@ const limiter = rateLimit({
 
 const app = express();
 
-mongoose.connect('mongodb://127.0.0.1:27017/bitfilmsdb');
+// база в режиме разработки bitfilmsdb, в продуктивном режиме moviesdb
+mongoose.connect(URL_DATABASE);
 
-app.use(limiter);
 app.use(requestLogger); // логирование запросов
+app.use(limiter);
 app.use(cors);
 app.use(helmet());
 
