@@ -18,3 +18,4 @@ https://api.olegvpc.diplom.nomoredomains.icu
 
 ## Публичный ip: 
 158.160.39.232
+ssh olegvpc-diplom@158.160.39.232

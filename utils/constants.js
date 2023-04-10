@@ -1,3 +1,4 @@
+const URL = 'http://localhost:4000';
 const urlValidatorMessage = 'Строка должна содержать ссылку!';
 const userExistErrorMessage = 'Пользователь с таким email уже существует';
 const BadRequestErrorMessage = 'Переданы некорректные данные';
@@ -8,4 +9,5 @@ module.exports = {
   userExistErrorMessage,
   BadRequestErrorMessage,
   requiredValidationMessage,
+  URL,
 };

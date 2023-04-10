@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const rateLimit = require('express-rate-limit');
 const helmet = require('helmet');
 const { errors } = require('celebrate');
+const { startTelegramBot } = require('./telergram/index');
 
 const cors = require('./middlewares/cors');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
@@ -12,7 +13,7 @@ const { routes } = require('./routes');
 const { handleError } = require('./middlewares/handleError');
 
 const {
-  PORT = 3000,
+  PORT = 4000,
   BASE_PATH = `http://localhost:${PORT}`,
   URL_DATABASE = 'mongodb://127.0.0.1:27017/bitfilmsdb',
 } = process.env;
@@ -41,6 +42,8 @@ app.use(errorLogger); // логирование ошибок после запр
 app.use(errors()); // обработчик ошибок celebrate
 //
 app.use(handleError);
+
+startTelegramBot();
 
 app.listen(PORT, () => {
   console.log('Ссылка на сервер');
