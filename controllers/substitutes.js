@@ -89,3 +89,25 @@ module.exports.setApproveSubs = (req, res, next) => {
     })
     .catch(next); //  то же самое что .catch(err => next(err));
 };
+
+module.exports.deleteSubstitute = (req, res, next) => {
+  Substitute.findById(req.params.substituteId)
+    .then((substitute) => {
+      if (!substitute) {
+        throw new NotFoundError(`Замещающего с указанным _id: ${req.params.substituteId} нет в базе.`);
+      }
+      Substitute.findByIdAndRemove(req.params.substituteId)
+        // .populate('owner')
+        .then(() => {
+          res.send({ message: `Замещающий с _id: ${req.params.substituteId} удален` });
+        })
+        .catch(next); //  то же самое что .catch(err => next(err));
+    })
+    .catch((err) => {
+      if (err.name === 'CastError') {
+        const error = new ValidationError(`Передан некорректный _id: ${req.params.substituteId}.`);
+        return next(error);
+      }
+      return next(err);
+    });
+};

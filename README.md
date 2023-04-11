@@ -19,3 +19,11 @@ https://api.olegvpc.diplom.nomoredomains.icu
 ## Публичный ip: 
 158.160.39.232
 ssh olegvpc-diplom@158.160.39.232
+
+## перед деплоем
+* 1- подключить запуск ТелеграммБота (app.js)
+* 2- delete comment onst bot = new TelegramApi(botToken, { polling: true }); (index.js)
+* 3- change EndPoin on https://api.olegvpc.diplom.nomoredomains.icu' (constats.js)
+## After deploy
+* pm2 restart app
+

@@ -5,6 +5,7 @@ const {
   getAllSubsByInteval,
   setApproveSubs,
   saveNewSubs,
+  deleteSubstitute,
 } = require('../controllers/substitutes');
 
 const { sendTelMessage } = require('../middlewares/send_message');
@@ -29,6 +30,15 @@ router.post(
   }),
   sendTelMessage, // Middleware for send message throw telrgramBot
   saveNewSubs,
+);
+router.delete(
+  '/:substituteId',
+  celebrate({
+    params: Joi.object().keys({
+      substituteId: Joi.string().alphanum().hex().length(24),
+    }),
+  }),
+  deleteSubstitute,
 );
 
 module.exports = router;

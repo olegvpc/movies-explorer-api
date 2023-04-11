@@ -8,6 +8,8 @@ const allowedCors = [
   'olegvpc.students.nomoredomains.icu',
   'http://olegvpc.students.nomoredomains.icu',
   'https://olegvpc.students.nomoredomains.icu',
+  'https://olegvpc.diplom.nomoredomains.icu/',
+  'http://olegvpc.diplom.nomoredomains.icu/',
   '158.160.39.232',
   'https://158.160.39.232',
 ];

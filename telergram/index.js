@@ -24,9 +24,18 @@ const buttonOption = {
     ],
   }),
 };
+
 const sendMessage = (chatID, message, optional) => {
-  const callBack = optional ? buttonOption : undefined;
-  return bot.sendMessage(chatID, message, callBack);
+  try {
+    const callBack = optional ? buttonOption : undefined;
+    return bot.sendMessage(chatID, message, callBack);
+  } catch (e) {
+    // console.log(e instanceof ReferenceError); // true
+    // console.log(e.message);                   // "bot is not defined"
+    // console.log(e.name);                      // "ReferenceError"
+    // console.log(e.stack);
+    return new Error(`проблема с телеграм ботом: ${e.message} - ${e.name}`);
+  }
 };
 
 const startTelegramBot = () => {

@@ -43,8 +43,6 @@ const saveApprove = (approveData) => fetch(`${URL}/substitute/approve`, {
     body: JSON.stringify(approveData),
   })
     .then((res) => {
-    // console.log('ОТВЕТ В api.js -');
-      // console.log(chatIdData, URL);
       return getResponse(res);
     })
     .catch((err) => console.log(`ERROR В api.js -${err}`));
