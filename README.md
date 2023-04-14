@@ -25,5 +25,7 @@ ssh olegvpc-diplom@158.160.39.232
 * 2- delete comment onst bot = new TelegramApi(botToken, { polling: true }); (index.js)
 * 3- change EndPoin on https://api.olegvpc.diplom.nomoredomains.icu' (constats.js)
 ## After deploy
+* 1- npm install
+* 2- copy .env to root
 * pm2 restart app
 

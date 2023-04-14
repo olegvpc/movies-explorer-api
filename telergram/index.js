@@ -70,20 +70,20 @@ const startTelegramBot = () => {
         users.push(userData);
       }
       // console.log(users)
-      return sendMessage(userChatId, `Тебя зовут ${msg.from.last_name} ${msg.from.first_name}`)
+      return sendMessage(userChatId, `Тебя зовут ${msg.from.last_name} ${msg.from.first_name}`);
     }
-    if (text === '/testnadin') {
-      return sendMessage(417643617, 'Нужна замена учителя ФИО на ЗАВТРА', buttonOption);
-      // await sendMessageForChange(users[1].userChatId);
-    }
-    if (text === '/testalex') {
-      return sendMessage(300123159, 'Нужна замена учителя ФИО на ЗАВТРА', buttonOption);
-      // await sendMessageForChange(users[1].userChatId);
-    }
-    if (text === '/testoleg') {
-      return sendMessage(206633135, 'Нужна замена учителя ФИО на ЗАВТРА', buttonOption);
-      // await sendMessageForChange(users[1].userChatId);
-    }
+    // if (text === '/testnadin') {
+    //   return sendMessage(417643617, 'Нужна замена учителя ФИО на ЗАВТРА', buttonOption);
+    //   // await sendMessageForChange(users[1].userChatId);
+    // }
+    // if (text === '/testalex') {
+    //   return sendMessage(300123159, 'Нужна замена учителя ФИО на ЗАВТРА', buttonOption);
+    //   // await sendMessageForChange(users[1].userChatId);
+    // }
+    // if (text === '/testoleg') {
+    //   return sendMessage(206633135, 'Нужна замена учителя ФИО на ЗАВТРА', buttonOption);
+    //   // await sendMessageForChange(users[1].userChatId);
+    // }
     return sendMessage(userChatId, 'Я тебя не понимаю, попробуй еще раз');
     // await bot.sendMessage(cuserChatId, `Ты написал мне ${text}`)
   });

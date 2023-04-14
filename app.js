@@ -6,6 +6,7 @@ const rateLimit = require('express-rate-limit');
 const helmet = require('helmet');
 const { errors } = require('celebrate');
 const { startTelegramBot } = require('./telergram/index');
+const { excelInDb } = require('./utils/excel-in-db');
 
 const cors = require('./middlewares/cors');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
@@ -20,7 +21,7 @@ const {
 
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 минут
-  max: 100, // 100 запросов с одного IP
+  max: 1000, // 100 запросов с одного IP
 });
 
 const app = express();

@@ -23,7 +23,7 @@ const teacherSchema = new mongoose.Schema(
     subject: {
       type: String,
       minlength: 2,
-      maxlength: 50,
+      maxlength: 70,
       required: true,
     },
     phone: {

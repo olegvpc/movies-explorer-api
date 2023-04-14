@@ -51,7 +51,7 @@ router.patch(
       lastName: Joi.string().required().min(2).max(50),
       firstName: Joi.string().required().min(2).max(50),
       familyName: Joi.string().required().min(2).max(50),
-      subject: Joi.string().required().min(2).max(50),
+      subject: Joi.string().required().min(2).max(70),
       phone: Joi.string().required().min(2).max(50),
       email: Joi.string().required().min(2).max(50),
       birthday: Joi.date(),
